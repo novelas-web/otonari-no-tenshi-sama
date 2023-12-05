@@ -37,10 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 enlaceSecundario.href = '#'; // Puedes ajustar la URL según tus necesidades
                 enlaceSecundario.classList.add('enlaceSecundario');
                 enlaceSecundario.textContent = 'X';
-                enlaceSecundario.onclick = function() {
-                    var seccion = document.getElementById('contenedor');
-                    seccion.innerHTML = '';
-                };
+                enlaceSecundario.onclick = cerrar;
 
                 // Agregar el enlace secundario al contenedor
                 contenedor.appendChild(enlaceSecundario);
@@ -49,4 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error al cargar el archivo:', error);
             });
     });
+    // Función para cerrar y eliminar el contenido del contenedor
+    function cerrar() {
+        contenedor.innerHTML = ''; // Eliminar todo el contenido del contenedor
+    }
 });
