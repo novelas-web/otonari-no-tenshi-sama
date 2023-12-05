@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var enlaceSecundario = document.createElement('a');
                 enlaceSecundario.href = '#'; // Puedes ajustar la URL según tus necesidades
                 enlaceSecundario.classList.add('enlaceSecundario');
-                enlaceSecundario.textContent = 'Enlace Secundario';
+                enlaceSecundario.textContent = 'X';
 
                 // Agregar el enlace secundario al contenedor
                 contenedor.appendChild(enlaceSecundario);
