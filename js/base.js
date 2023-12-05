@@ -38,8 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-function cerr(event) {
-      var seccion = document.getElementById('contenedor');
-      seccion.innerHTML = '';
-    }
+    function cerr(event) {
+          var seccion = document.getElementById('contenedor');
+          seccion.innerHTML = '';
+        }
