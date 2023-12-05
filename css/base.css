@@ -1,5 +1,5 @@
 body{
-    background-image: url('../img/fondo.jpg');
+    background-image: red;
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el cuerpo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-attachment: fixed;
