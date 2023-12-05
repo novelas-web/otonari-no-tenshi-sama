@@ -14,7 +14,7 @@
         event.preventDefault();
 
         // Ruta del archivo de texto
-        var rutaArchivo = "nota.txt";
+        var rutaArchivo = "ruta/contenido.txt";
 
         // Realizar una solicitud AJAX para obtener el contenido del archivo
         $.ajax({
@@ -22,8 +22,16 @@
           type: "GET",
           dataType: "text",
           success: function (data) {
-            // Éxito: cargar el contenido en el div
-            $("#contenidoDiv").text(data);
+            // Éxito: dividir el texto en líneas
+            var lineas = data.split("\n");
+
+            // Crear un array de líneas con etiquetas <p>
+            var lineasConParrafos = lineas.map(function (linea) {
+              return "<p>" + linea + "</p>";
+            });
+
+            // Unir las líneas con etiquetas <p> y cargar en el div
+            $("#contenidoDiv").html(lineasConParrafos.join(""));
           },
           error: function (error) {
             // Manejar errores si es necesario
