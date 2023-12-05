@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 // Agregar el div al contenedor
-                contenedor.appendChild(nuevoDiv);
+                contenedor.appendChild("SEXO");
             })
             .catch(error => {
                 console.error('Error al cargar el archivo:', error);
