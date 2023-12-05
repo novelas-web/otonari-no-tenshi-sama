@@ -1,40 +1,45 @@
-document.getElementById('enlace').addEventListener('click', function(event) {
-    event.preventDefault(); // Evitar que el enlace redireccione
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el enlace y el contenedor
+    var enlace = document.getElementById('miEnlace');
+    var contenedor = document.getElementById('contenedor');
 
-    // Obtener la ruta del archivo desde el atributo href
-    var archivoURL = this.getAttribute('href');
+    // Agregar un event listener al enlace
+    enlace.addEventListener('click', function (event) {
+        // Prevenir la acción por defecto del enlace (navegar a otra página)
+        event.preventDefault();
 
-    // Crear un nuevo div
-    var nuevoDiv = document.createElement('div');
-    nuevoDiv.className = 'miDiv';
+        // Crear el div y añadirle la clase
+        var nuevoDiv = document.createElement('div');
+        nuevoDiv.classList.add('miDiv');
 
-    // Realizar una solicitud para obtener el contenido del archivo
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', archivoURL, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // Obtener el texto del archivo
-            var textoArchivo = xhr.responseText;
+        // Obtener la ruta del archivo desde el atributo href del enlace
+        var rutaArchivo = enlace.getAttribute('href');
 
-            // Dividir el texto en líneas
-            var lineas = textoArchivo.split('\n');
+        // Realizar una petición para obtener el contenido del archivo
+        fetch(rutaArchivo)
+            .then(response => response.text())
+            .then(textoArchivo => {
+                // Dividir el contenido en líneas
+                var lineas = textoArchivo.split('\n');
 
-            // Crear párrafos y agregarlos al div
-            lineas.forEach(function(linea) {
-                var parrafo = document.createElement('p');
-                parrafo.textContent = linea;
-                nuevoDiv.appendChild(parrafo);
+                // Crear párrafos y agregarlos al div
+                lineas.forEach(function (linea) {
+                    var parrafo = document.createElement('p');
+                    parrafo.textContent = linea;
+                    nuevoDiv.appendChild(parrafo);
+                });
+
+                // Agregar el div al contenedor
+                contenedor.appendChild(nuevoDiv);
+            })
+            .catch(error => {
+                console.error('Error al cargar el archivo:', error);
             });
-
-            // Agregar el div al section
-            document.getElementById('contenedor').appendChild(nuevoDiv);
-        }
-    };
-    xhr.send();
+    });
 });
 
 
 function cerr(event) {
-      var seccion = document.getElementById('contenido');
+      var seccion = document.getElementById('contenedor');
       seccion.innerHTML = '';
     }
