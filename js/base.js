@@ -30,13 +30,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 // Agregar el div al contenedor
-                contenedor.appendChild("SEXO");
+                contenedor.appendChild(nuevoDiv);
+
+                // Crear el enlace secundario y añadirle la clase
+                var enlaceSecundario = document.createElement('a');
+                enlaceSecundario.href = '#'; // Puedes ajustar la URL según tus necesidades
+                enlaceSecundario.classList.add('enlaceSecundario');
+                enlaceSecundario.textContent = 'Enlace Secundario';
+
+                // Agregar el enlace secundario al contenedor
+                contenedor.appendChild(enlaceSecundario);
             })
             .catch(error => {
                 console.error('Error al cargar el archivo:', error);
             });
     });
 });
+
 
     function cerr(event) {
           var seccion = document.getElementById('contenedor');
