@@ -1,50 +1,34 @@
-document.getElementById('enlace').addEventListener('click', function (event) {
-  event.preventDefault(); // Evitar que el enlace redireccione
-  
-  var rutaArchivo = this.getAttribute('href');
-  cargarContenido(rutaArchivo);
+document.getElementById('enlace').addEventListener('click', function(event) {
+    event.preventDefault(); // Evitar que el enlace abra la ruta directamente
+
+    // Obtener la ruta del archivo desde el atributo href
+    const archivoURL = this.getAttribute('href');
+
+    // Crear un nuevo div
+    const nuevoDiv = document.createElement('div');
+    nuevoDiv.classList.add('nuevo-div');
+
+    // Obtener el contenido del archivo de texto
+    fetch(archivoURL)
+        .then(response => response.text())
+        .then(texto => {
+            // Dividir el texto en párrafos
+            const parrafos = texto.split('\n');
+            
+            // Crear elementos de párrafo y añadir al div
+            parrafos.forEach(parrafo => {
+                const p = document.createElement('p');
+                p.textContent = parrafo;
+                nuevoDiv.appendChild(p);
+            });
+
+            // Añadir el nuevo div al contenido
+            document.getElementById('contenido').appendChild(nuevoDiv);
+        })
+        .catch(error => console.error('Error al cargar el archivo:', error));
 });
 
-function cargarContenido(rutaArchivo) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', rutaArchivo, true);
-
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      var contenidoTexto = xhr.responseText;
-      var contenidoHTML = formatearContenido(contenidoTexto);
-
-      crearDiv(contenidoHTML);
-    }
-  };
-
-  xhr.send();
-}
-
-function formatearContenido(contenidoTexto) {
-  var lineas = contenidoTexto.split('\n');
-  var contenidoHTML = '';
-
-  for (var i = 0; i < lineas.length; i++) {
-    contenidoHTML += '<p>' + lineas[i] + '</p>';
-  }
-
-  return contenidoHTML;
-}
-
-function crearDiv(contenidoHTML) {
-  var seccion = document.getElementById('seccion');
-  var nuevoDiv = document.createElement('div');
-  nuevoDiv.className = 'contenido';
-  nuevoDiv.innerHTML = contenidoHTML;
-  
-  seccion.appendChild(nuevoDiv);
-  
-  nuevoDiv.style.display = 'block'; // Mostrar el contenido
-}
-
-
 function cerr(event) {
-      var seccion = document.getElementById('mi-seccion');
+      var seccion = document.getElementById('contenido');
       seccion.innerHTML = '';
     }
