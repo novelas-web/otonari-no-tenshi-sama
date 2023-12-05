@@ -1,87 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load Text File</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear div al hacer clic</title>
+  <style>
+    .contenido {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <section id="miSeccion">
-        <!-- Aquí se creará el div -->
-    </section>
 
-    <a href="nota.txt" id="enlaceCargar">Cargar Texto</a>
+<a href="nota.txt" id="enlace">Abrir contenido</a>
+<section id="seccion"></section>
 
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Verificar si el elemento con id 'miSeccion' existe
-    var seccionExistente = document.getElementById('miSeccion');
+<script>
+  document.getElementById('enlace').addEventListener('click', function (event) {
+    event.preventDefault(); // Evitar que el enlace redireccione
+    
+    var rutaArchivo = this.getAttribute('href');
+    cargarContenido(rutaArchivo);
+  });
 
-    // Crear el elemento 'div' si no existe
-    if (!seccionExistente) {
-        var nuevaSeccion = document.createElement('section');
-        nuevaSeccion.id = 'miSeccion';
-        document.body.appendChild(nuevaSeccion);
+  function cargarContenido(rutaArchivo) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', rutaArchivo, true);
+
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        var contenidoTexto = xhr.responseText;
+        var contenidoHTML = formatearContenido(contenidoTexto);
+
+        crearDiv(contenidoHTML);
+      }
+    };
+
+    xhr.send();
+  }
+
+  function formatearContenido(contenidoTexto) {
+    var lineas = contenidoTexto.split('\n');
+    var contenidoHTML = '';
+
+    for (var i = 0; i < lineas.length; i++) {
+      contenidoHTML += '<p>' + lineas[i] + '</p>';
     }
 
-    // Obtener referencia al enlace
-    var enlaceCargar = document.getElementById('enlaceCargar');
+    return contenidoHTML;
+  }
 
-    // Agregar un listener al evento de clic en el enlace
-    enlaceCargar.addEventListener('click', function (event) {
-        // Prevenir el comportamiento predeterminado del enlace
-        event.preventDefault();
+  function crearDiv(contenidoHTML) {
+    var seccion = document.getElementById('seccion');
+    var nuevoDiv = document.createElement('div');
+    nuevoDiv.className = 'contenido';
+    nuevoDiv.innerHTML = contenidoHTML;
+    
+    seccion.appendChild(nuevoDiv);
+    
+    nuevoDiv.style.display = 'block'; // Mostrar el contenido
+  }
+</script>
 
-        // Obtener la ruta del archivo de texto desde el atributo 'href' del enlace
-        var rutaArchivo = enlaceCargar.getAttribute('href');
-
-        // Llamar a la función para cargar y procesar el texto
-        cargarTexto(rutaArchivo);
-    });
-
-    function cargarTexto(rutaArchivo) {
-        // Crear una nueva instancia de XMLHttpRequest
-        var xhr = new XMLHttpRequest();
-
-        // Configurar la solicitud
-        xhr.open('GET', rutaArchivo, true);
-
-        // Configurar la función de devolución de llamada
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Éxito: el contenido del archivo de texto se carga correctamente
-                var contenidoTexto = xhr.responseText;
-
-                // Dividir el texto en líneas
-                var lineas = contenidoTexto.split('\n');
-
-                // Crear un nuevo elemento 'div'
-                var nuevoDiv = document.createElement('div');
-
-                // Recorrer las líneas y agregar etiquetas <p>
-                for (var i = 0; i < lineas.length; i++) {
-                    var parrafo = document.createElement('p');
-                    parrafo.textContent = lineas[i];
-                    nuevoDiv.appendChild(parrafo);
-                }
-
-                // Obtener la referencia a la sección
-                var miSeccion = document.getElementById('miSeccion');
-
-                // Limpiar el contenido existente de la sección
-                miSeccion.innerHTML = '';
-
-                // Agregar el nuevo div a la sección
-                miSeccion.appendChild(nuevoDiv);
-            }
-        };
-
-        // Enviar la solicitud
-        xhr.send();
-    }
-});
-
-    </script>
 </body>
 </html>
-
