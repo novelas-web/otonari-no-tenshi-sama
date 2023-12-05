@@ -36,7 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 var enlaceSecundario = document.createElement('a');
                 enlaceSecundario.href = '#'; // Puedes ajustar la URL según tus necesidades
                 enlaceSecundario.classList.add('enlaceSecundario');
-                enlaceSecundario.onclick = cerr(event);
+                enlaceSecundario.onclick = emer() {
+                    var seccion = document.getElementById('contenedor');
+                    seccion.innerHTML = '';};
                 enlaceSecundario.textContent = 'X';
 
                 // Agregar el enlace secundario al contenedor
@@ -47,9 +49,3 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 });
-
-
-    function cerr(event) {
-          var seccion = document.getElementById('contenedor');
-          seccion.innerHTML = '';
-        }
