@@ -14,7 +14,7 @@
 
     <script>
 
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Verificar si el elemento con id 'miSeccion' existe
     var seccionExistente = document.getElementById('miSeccion');
 
@@ -41,36 +41,43 @@
     });
 
     function cargarTexto(rutaArchivo) {
-        // Crear una nueva instancia de XMLHttpRequest
-        var xhr = new XMLHttpRequest();
+    // Crear una nueva instancia de XMLHttpRequest
+    var xhr = new XMLHttpRequest();
 
-        // Configurar la solicitud
-        xhr.open('GET', rutaArchivo, true);
+    // Configurar la solicitud
+    xhr.open('GET', rutaArchivo, true);
 
-        // Configurar la función de devolución de llamada
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Éxito: el contenido del archivo de texto se carga correctamente
-                var contenidoTexto = xhr.responseText;
+    // Configurar la función de devolución de llamada
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Éxito: el contenido del archivo de texto se carga correctamente
+            var contenidoTexto = xhr.responseText;
 
-                // Crear un nuevo elemento 'div'
-                var nuevoDiv = document.createElement('div');
+            // Dividir el contenido en líneas
+            var lineas = contenidoTexto.split('\n');
 
-                // Establecer el contenido del div con el texto del archivo
-                nuevoDiv.textContent = contenidoTexto;
+            // Crear un nuevo elemento 'div'
+            var nuevoDiv = document.createElement('div');
 
-                // Obtener la referencia a la sección
-                var miSeccion = document.getElementById('miSeccion');
+            // Crear elementos <p> para cada línea y agregarlos al div
+            lineas.forEach(function (linea) {
+                var parrafo = document.createElement('p');
+                parrafo.textContent = linea;
+                nuevoDiv.appendChild(parrafo);
+            });
 
-                // Agregar el nuevo div a la sección
-                miSeccion.appendChild(nuevoDiv);
-            }
-        };
+            // Obtener la referencia a la sección
+            var miSeccion = document.getElementById('miSeccion');
 
-        // Enviar la solicitud
-        xhr.send();
-    }
-});
+            // Agregar el nuevo div a la sección
+            miSeccion.appendChild(nuevoDiv);
+        }
+    };
+
+    // Enviar la solicitud
+    xhr.send();
+}
+
 
     </script>
 </body>
