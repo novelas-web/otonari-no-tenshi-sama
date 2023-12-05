@@ -42,3 +42,8 @@ document.getElementById('enlace').addEventListener('click', function (event) {
     
     nuevoDiv.style.display = 'block'; // Mostrar el contenido
   }
+
+function cerr(event) {
+      var seccion = document.getElementById('mi-seccion');
+      seccion.innerHTML = '';
+    }
