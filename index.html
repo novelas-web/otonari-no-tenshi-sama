@@ -10,10 +10,11 @@
         <!-- Aquí se creará el div -->
     </section>
 
-    <a href="#" id="enlaceCargar">Cargar Texto</a>
+    <a href="nota.txt" id="enlaceCargar">Cargar Texto</a>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+
+    document.addEventListener('DOMContentLoaded', function () {
     // Verificar si el elemento con id 'miSeccion' existe
     var seccionExistente = document.getElementById('miSeccion');
 
@@ -32,14 +33,14 @@
         // Prevenir el comportamiento predeterminado del enlace
         event.preventDefault();
 
+        // Obtener la ruta del archivo de texto desde el atributo 'href' del enlace
+        var rutaArchivo = enlaceCargar.getAttribute('href');
+
         // Llamar a la función para cargar el texto
-        cargarTexto();
+        cargarTexto(rutaArchivo);
     });
 
-    function cargarTexto() {
-        // Ruta del archivo de texto
-        var rutaArchivo = 'nota.txt';
-
+    function cargarTexto(rutaArchivo) {
         // Crear una nueva instancia de XMLHttpRequest
         var xhr = new XMLHttpRequest();
 
