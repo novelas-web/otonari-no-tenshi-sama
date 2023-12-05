@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargar Contenido</title>
+  <!-- Asegúrate de incluir la biblioteca jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Manejador de eventos para el enlace
+      $("#cargarContenido").on("click", function (event) {
+        // Evitar que el enlace realice la acción predeterminada
+        event.preventDefault();
+
+        // Ruta del archivo de texto
+        var rutaArchivo = "nota.txt";
+
+        // Realizar una solicitud AJAX para obtener el contenido del archivo
+        $.ajax({
+          url: rutaArchivo,
+          type: "GET",
+          dataType: "text",
+          success: function (data) {
+            // Éxito: cargar el contenido en el div
+            $("#contenidoDiv").text(data);
+          },
+          error: function (error) {
+            // Manejar errores si es necesario
+            console.error("Error al cargar el archivo:", error);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+<a href="#" id="cargarContenido">Cargar Contenido</a>
+<div id="contenidoDiv"></div>
+
+</body>
+</html>
