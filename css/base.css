@@ -37,7 +37,7 @@ body{
 }
 
 #contenedor .miDiv {
-    background: rgba(256,256,256,0.9);
+    background: white;
     position: absolute;
     width: 90%;
     top:10vh;
