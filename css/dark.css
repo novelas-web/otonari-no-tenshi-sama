@@ -7,7 +7,7 @@
 }
 
 body{
-    background-image: url('../img/fondo.jpg');
+    background: black;
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el cuerpo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-attachment: fixed;
@@ -15,15 +15,16 @@ body{
 
 
 .cuerpo{
-    background-color: rgba(256,256,256,0.8);
+    text-shadow: 2px 2px 5px black;
+    background-color: #333333;
     font-size: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(256, 256, 256, 0.5);
     padding: 30px 10%;
     margin: 10vh auto;
     width: 90%;
 }
 .cuerpo h1,#contenedor h1 {
-    color: #957941;
+    color: white;
     text-align: center;
 }
 
@@ -41,8 +42,8 @@ body{
 }
 
 #cambiarModo {
-    background: black;
-    color: white;
+    background: white;
+    color: black;
     padding: 10px 15px;
     font-size: 24px;
     border-radius:24px;
@@ -56,7 +57,7 @@ body{
 }
 
 #contenedor .miDiv {
-    background: white;
+    background: black;
     position: absolute;
     width: 90%;
     top:10vh;
@@ -67,6 +68,7 @@ body{
 }
 
 #contenedor .miDiv p{
+    color:white;
     text-align: justify;
     margin: 25px 0;
 }
