@@ -58,7 +58,7 @@ body{
     padding: 10px 15px;
     font-size: 24;
     border-radius:24px;
-    position: absolute;
+    position: fixed;
     top: 10vh;
     right: 5%;
 }
