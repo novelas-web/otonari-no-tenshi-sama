@@ -22,7 +22,7 @@ body{
     margin: 50px auto;
     width: 85%;
 }
-.cuerpo h1,.c1 h1 {
+.cuerpo h1,#contenedor h1 {
     color: #957941;
     text-align: center;
 }
