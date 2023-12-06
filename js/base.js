@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener todos los enlaces con la clase "abrir"
-    var enlacesAbrir = document.querySelectorAll('a.abrir');
+    var enlacesAbrir = document.querySelectorAll('section.cuerpo a');
 
     // Iterar sobre cada enlace
     enlacesAbrir.forEach(function (enlace) {
