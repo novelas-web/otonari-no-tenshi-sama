@@ -43,14 +43,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Agregar el div al contenedor
                     contenedor.appendChild(nuevoDiv);
 
-                    // Crear el enlace secundario y añadirle la clase y el evento onclick
-                    var enlaceSecundario = document.createElement('a');
-                    enlaceSecundario.href = 'javascript:void(0)';
-                    enlaceSecundario.textContent = 'X';
-                    enlaceSecundario.onclick = cerrar; // Asociar la función cerrar al evento onclick
+                    // Crear el enlace para cerrar el div
+                    var zelda = document.createElement('a');
+                    zelda.href = 'javascript:void(0)';
+                    zelda.textContent = 'X';
+                    zelda.onclick = cerrar; // Asociar la función cerrar al evento onclick
 
                     // Agregar el enlace secundario al contenedor
-                    contenedor.appendChild(enlaceSecundario);
+                    contenedor.appendChild(zelda);
                 })
                 .catch(error => {
                     console.error('Error al cargar el archivo:', error);
