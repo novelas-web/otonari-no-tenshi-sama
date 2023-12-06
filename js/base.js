@@ -23,13 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Dividir el contenido en líneas
                     var lineas = textoArchivo.split('\n');
 
-                    // Crear un elemento h1 para la primera línea y añadirlo al div
-                    var primerEncabezado = document.createElement('h1');
-                    primerEncabezado.textContent = lineas[0];
-                    nuevoDiv.appendChild(primerEncabezado);
+                    // Verificar si el enlace tiene un atributo title
+                    var h1Contenido = enlace.getAttribute('title');
 
-                    // Crear párrafos para las líneas restantes y agregarlos al div
-                    for (var i = 1; i < lineas.length; i++) {
+                    // Crear un elemento h1 si se especificó el título
+                    if (h1Contenido) {
+                        var primerEncabezado = document.createElement('h1');
+                        primerEncabezado.textContent = h1Contenido;
+                        nuevoDiv.appendChild(primerEncabezado);
+                    }
+
+                    // Crear párrafos para todas las líneas y agregarlos al div
+                    for (var i = 0; i < lineas.length; i++) {
                         var parrafo = document.createElement('p');
                         parrafo.textContent = lineas[i];
                         nuevoDiv.appendChild(parrafo);
@@ -42,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     var enlaceSecundario = document.createElement('a');
                     enlaceSecundario.href = '#'; // Puedes ajustar la URL según tus necesidades
                     enlaceSecundario.classList.add('enlaceSecundario');
-                    enlaceSecundario.textContent = 'X';
+                    enlaceSecundario.textContent = 'Enlace Secundario';
                     enlaceSecundario.onclick = cerrar; // Asociar la función cerrar al evento onclick
 
                     // Agregar el enlace secundario al contenedor
