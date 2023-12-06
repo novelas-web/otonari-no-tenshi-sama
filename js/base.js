@@ -22,22 +22,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Dividir el contenido en líneas
                 var lineas = textoArchivo.split('\n');
 
-                // Crear párrafos y agregarlos al div
-                lineas.forEach(function (linea) {
+                // Crear un elemento h1 para la primera línea y añadirlo al div
+                var primerEncabezado = document.createElement('h1');
+                primerEncabezado.textContent = lineas[0];
+                nuevoDiv.appendChild(primerEncabezado);
+
+                // Crear párrafos para las líneas restantes y agregarlos al div
+                for (var i = 1; i < lineas.length; i++) {
                     var parrafo = document.createElement('p');
-                    parrafo.textContent = linea;
+                    parrafo.textContent = lineas[i];
                     nuevoDiv.appendChild(parrafo);
-                });
+                }
 
                 // Agregar el div al contenedor
                 contenedor.appendChild(nuevoDiv);
 
-                // Crear el enlace secundario y añadirle la clase
+                // Crear el enlace secundario y añadirle la clase y el evento onclick
                 var enlaceSecundario = document.createElement('a');
                 enlaceSecundario.href = '#'; // Puedes ajustar la URL según tus necesidades
                 enlaceSecundario.classList.add('enlaceSecundario');
-                enlaceSecundario.textContent = 'X';
-                enlaceSecundario.onclick = cerrar;
+                enlaceSecundario.textContent = 'Enlace Secundario';
+                enlaceSecundario.onclick = cerrar; // Asociar la función cerrar al evento onclick
 
                 // Agregar el enlace secundario al contenedor
                 contenedor.appendChild(enlaceSecundario);
@@ -46,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error al cargar el archivo:', error);
             });
     });
+
     // Función para cerrar y eliminar el contenido del contenedor
     function cerrar() {
         contenedor.innerHTML = ''; // Eliminar todo el contenido del contenedor
